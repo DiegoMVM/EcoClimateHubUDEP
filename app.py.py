@@ -7,6 +7,15 @@ import time
 import Crear
 import funciones 
 import schedule 
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+
+
+
+
+
 
 def Loop(): 
     fecha_inicio = datetime(2023, 11, 5, 0, 0)
@@ -64,6 +73,10 @@ def Loop():
     while True:
         schedule.run_pending()
         time.sleep(1)
+if __name__ == '__main__':
+    
+    script_thread = threading.Thread(target=Loop())
+    script_thread.start()
 
-
-Loop()
+    # Inicia el servidor Flask
+    app.run(debug=True, use_reloader=False)
