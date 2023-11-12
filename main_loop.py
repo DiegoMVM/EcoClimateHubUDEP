@@ -8,6 +8,8 @@ import Crear
 import funciones 
 import schedule 
 import pytz 
+import os
+from git import Repo
 
 tz = pytz.timezone('America/New_York')
 def Loop(): 
@@ -48,6 +50,8 @@ def Loop():
     tabla= 'tabla_excel.xlsx'
     funciones.Todo(tabla)
 
+    nuevos_archivos= ['grafico_pluviosidad_ayer.png','grafico_pluviosidad_hoy.png','grafico_pluviosidad_hora.png','grafico_radiacion_hora.png','grafico_radiacion_hoy.png','grafico_radiacion_ayer.png','tabla_excel.xlsx','tabla_mapa_calor_seagreen.xlsx']
+    funciones.ActualizarGit(os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
 
 
     # Programar las actualizaciones automaticas
@@ -56,6 +60,7 @@ def Loop():
     # Programar la tarea cada 5 minutos
     schedule.every(5).minutes.do(funciones.Hora,tabla)
     schedule.every(5).minutes.do(funciones.DataBase,datos)
+    schedule.every(5).minutes.do(funciones.ActualizarGit,os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
     # Programar la tarea cada media hora
     schedule.every(30).minutes.do(funciones.Hoy,tabla)
 

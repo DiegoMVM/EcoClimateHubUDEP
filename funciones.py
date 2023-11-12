@@ -6,52 +6,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 import base64 
+import os
+from git import Repo
 
 
 
 
-def subir_archivo_github(nombre_archivo):
-    url = f'https://api.github.com/repos/DiegoMVM/EcoClimateHubUDEP/contents/{nombre_archivo}'
-    with open(nombre_archivo, 'rb') as file:
-        contenido_base64 = base64.b64encode(file.read()).decode('utf-8')
-
-    headers = {
-        'Authorization': f'Bearer {"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"}',
-        'Content-Type': 'application/json',
-    }
-
-    # Verificar si el archivo ya existe
-    respuesta = requests.get(url, headers=headers)
-    if respuesta.status_code == 200:
-        sha = respuesta.json()['sha']
-        mensaje = 'Actualizar archivo'
-    elif respuesta.status_code == 404:
-        sha = None
-        mensaje = 'Añadir archivo'
-    else:
-        print(f'Error al obtener información del archivo: {respuesta.status_code}')
-        return
-
-
-
-
-
-
-
-    data = {
-        'message': mensaje,
-        'content': contenido_base64,
-        'sha': sha,
-    }
-
-    respuesta = requests.put(url, headers=headers, json=data)
-
-    if respuesta.status_code == 200 or respuesta.status_code == 201:
-        print(f'Archivo subido exitosamente: {respuesta.json()["content"]["html_url"]}')
-    else:
-        print(f'Error al subir el archivo: {respuesta.status_code}')
-
-################################################################
 
 def RadiacionAyer(tabla):
     #Se hace un gráfico con los datos de ayer, partiendo del dataset
@@ -82,7 +42,7 @@ def RadiacionAyer(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig('grafico_radiacion_ayer.png')
-    subir_archivo_github('grafico_radiacion_ayer.png')
+    
 def RadiacionHoy(tabla):
 
     #Se hace un gráfico con los datos de hoy partiendo del dataset
@@ -112,7 +72,7 @@ def RadiacionHoy(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig('grafico_radiacion_hoy.png')
-    subir_archivo_github('grafico_radiacion_hoy.png')
+    
 
 def RadiacionHora(tabla): 
     fecha_actual = datetime.now()
@@ -147,7 +107,7 @@ def RadiacionHora(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig('grafico_radiacion_hora.png')
-    subir_archivo_github('grafico_radiacion_hora.png')
+    
 def PluviosidadAyer(tabla):
 #Se hace un gráfico con los datos de ayer, partiendo del dataset
     fecha_actual = datetime.now()
@@ -177,7 +137,7 @@ def PluviosidadAyer(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig('grafico_pluviosidad_ayer.png')
-    subir_archivo_github('grafico_pluviosidad_ayer.png')
+    
 
 def PluviosidadHoy(tabla): 
     #Se hace un gráfico con los datos de hoy partiendo del dataset
@@ -208,7 +168,7 @@ def PluviosidadHoy(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig("grafico_pluviosidad_hoy.png")
-    subir_archivo_github("grafico_pluviosidad_hoy.png")
+    
 def PluviosidadHora(tabla): 
 
     fecha_actual = datetime.now()
@@ -239,7 +199,7 @@ def PluviosidadHora(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig("grafico_pluviosidad_hora.png")
-    subir_archivo_github("grafico_pluviosidad_hora.png")
+    
 ###########
 
 
@@ -256,8 +216,6 @@ def DataBase(datos):
     for nombre_archivo, mapa_color in zip(archivos, mapas_colores.values()):
         df_estilizado = df.style.background_gradient(cmap=mapa_color, subset=['Pluviosidad', 'Radiación UV'])
         df_estilizado.to_excel(nombre_archivo, index=False, engine='openpyxl')
-    subir_archivo_github('tabla_excel.xlsx')
-    subir_archivo_github('tabla_mapa_calor_seagreen.xlsx')
 
 
 ###############
@@ -283,5 +241,16 @@ def Todo(tabla):
 
 
 
+def ActualizarGit(repo_path, file_paths, commit_message):
+    # Abrir el repositorio
+    repo = Repo(repo_path)
 
+    # Añadir los archivos al índice
+    repo.index.add(file_paths)
 
+    # Realizar el commit
+    repo.index.commit(commit_message)
+
+    # Hacer push a la rama actual
+    origin = repo.remote(name='origin')
+    origin.push()
