@@ -40,14 +40,15 @@
       padding: 120px 0;
     }
 
-    .gradient-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 30px 0;
-      background-color: rgba(81, 166, 76, 0.8);
-      padding: 20px;
-      border-radius: 10px;
+    .download-button {
+      padding: 10px;
+      background-color: #000080;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 20px;
     }
 
     .excel-container {
@@ -69,17 +70,6 @@
       padding: 10px;
       border: 1px solid #3b5998;
       text-align: center;
-    }
-
-    .download-button {
-      padding: 10px;
-      background-color: #000080;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-bottom: 20px;
     }
 
     .popup-container {
@@ -212,12 +202,13 @@
             var td = tr.insertCell();
             // Formatear la fecha y hora con minutos en la primera columna
             if (col === 0) {
-              var dateValue = new Date(cell.v);
+              var datetimeString = cell.w;
+              var dateParts = datetimeString.split(' ');
+              var dateValue = new Date(dateParts[0] + 'T' + dateParts[1] + 'Z');
               if (!isNaN(dateValue.getTime())) {
                 // Formatear fecha y hora con minutos
-                var formattedDate = dateValue.toLocaleDateString() + ' ' +
-                                    dateValue.getHours() + ':' +
-                                    ('0' + dateValue.getMinutes()).slice(-2);
+                var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                var formattedDate = new Intl.DateTimeFormat('es-ES', options).format(dateValue);
                 td.innerHTML = formattedDate;
               } else {
                 td.innerHTML = cell.w;
