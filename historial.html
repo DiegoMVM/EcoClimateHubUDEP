@@ -5,7 +5,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <style>
-        body {
+    body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
@@ -205,8 +205,8 @@
             if (col === 0) {
               var datetimeString = cell.w;
               var momentDate = moment(datetimeString).utcOffset(-5); // Ajustar la zona horaria a Nueva York (UTC-5)
-              var formattedDate = new Intl.DateTimeFormat('es-ES', options).format(dateValue);
-              td.innerHTML = formattedDate.replace('T', ' '); // Reemplazar 'T' con espacio
+              var formattedDate = momentDate.format('YYYY-MM-DD HH:mm:ss');
+              td.innerHTML = formattedDate;
 
             } else {
               // Mostrar el valor tal como está para las otras columnas
