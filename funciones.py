@@ -24,6 +24,7 @@ def RadiacionAyer(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_ayer['Fecha'], datos_ayer['Radiación UV'], label='Radiación UV', color='purple', marker='o')
+    plt.plot(datos_ayer['Fecha'], datos_ayer['Radiación UV'], label='Conexión de puntos', color='purple', linestyle='-', marker="o")
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Radiación UV')
     plt.title('Radiación UV vs Tiempo (Ayer)')
@@ -54,6 +55,7 @@ def RadiacionHoy(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_hoy['Fecha'], datos_hoy['Radiación UV'], label='Radiación UV', color='purple', marker='o')
+    plt.plot(datos_hoy['Fecha'], datos_hoy['Radiación UV'], label='Conexión de puntos', color='purple', linestyle='-', marker='o')
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Radiación UV')
     plt.title('Radiación UV vs Tiempo (hoy)')
@@ -88,6 +90,7 @@ def RadiacionHora(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_hoy['Fecha'], datos_hoy['Radiación UV'], label='Radiación UV', color='purple', marker='o')
+    plt.plot(datos_hoy['Fecha'], datos_hoy['Radiación UV'], label='Conexión de puntos', color='purple', linestyle='-', marker='o')
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Radiación UV')
     plt.title('Radiación UV vs Tiempo (última hora)')
@@ -119,6 +122,7 @@ def PluviosidadAyer(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_ayer['Fecha'], datos_ayer['Pluviosidad'], label='Pluviosidad', color='skyblue', marker='o')
+    plt.plot(datos_ayer['Fecha'], datos_ayer['Pluviosidad'], label='Conexión de puntos', color='skyblue', linestyle='-', marker="o")
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Pluviosidad')
     plt.title('Pluviosidad vs Tiempo (Ayer)')
@@ -147,6 +151,7 @@ def PluviosidadHoy(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_hoy['Fecha'], datos_hoy['Pluviosidad'], label='Pluviosidad', color='skyblue', marker='o')
+    plt.plot(datos_hoy['Fecha'], datos_hoy['Pluviosidad'], label='Conexión de puntos', color='skyblue', linestyle='-', marker='o')
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Pluviosidad')
     plt.title('Pluviosidad vs Tiempo (hoy)')
@@ -178,6 +183,7 @@ def PluviosidadHora(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_hoy['Fecha'], datos_hoy['Pluviosidad'], label='Pluviosidad', color='skyblue', marker='o')
+    plt.plot(datos_hoy['Fecha'], datos_hoy['Pluviosidad'], label='Conexión de puntos', color='skyblue', linestyle='-', marker='o')
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Pluviosidad')
     plt.title('Pluviosidad vs Tiempo (última hora)')
@@ -194,8 +200,6 @@ def PluviosidadHora(tabla):
     plt.close()
 
 
-##FALTA DEFINIR FUNCIONES PARA HUMEDAD Y RADIACION (6 FUNCIONES EN TOTAL)
-
 def HumedadAyer(tabla):
 #Se hace un gráfico con los datos de ayer, partiendo del dataset
     fecha_actual = datetime.now()
@@ -210,6 +214,7 @@ def HumedadAyer(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_ayer['Fecha'], datos_ayer['Humedad'], label='Humedad', color='gray', marker='o')
+    plt.plot(datos_ayer['Fecha'], datos_ayer['Humedad'], label='Conexión de puntos', color='gray', linestyle='-', marker="o")
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Humedad')
     plt.title('Humedad vs Tiempo (Ayer)')
@@ -238,6 +243,7 @@ def HumedadHoy(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_hoy['Fecha'], datos_hoy['Humedad'], label='Humedad', color='gray', marker='o')
+    plt.plot(datos_hoy['Fecha'], datos_hoy['Humedad'], label='Conexión de puntos', color='gray', linestyle='-', marker='o')
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Humedad')
     plt.title('Humedad vs Tiempo (hoy)')
@@ -269,6 +275,7 @@ def HumedadHora(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_hoy['Fecha'], datos_hoy['Humedad'], label='Humedad', color='gray', marker='o')
+    plt.plot(datos_hoy['Fecha'], datos_hoy['Humedad'], label='Conexión de puntos', color='gray', linestyle='-', marker='o')
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Humedad')
     plt.title('Humedad vs Tiempo (última hora)')
@@ -299,6 +306,7 @@ def TemperaturaAyer(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_ayer['Fecha'], datos_ayer['Temperatura'], label='Temperatura', color='red', marker='o')
+    plt.plot(datos_ayer['Fecha'], datos_ayer['Temperatura'], label='Conexión de puntos', color='red', linestyle='-', marker="o")
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Temperatura')
     plt.title('Temperatura vs Tiempo (Ayer)')
@@ -327,6 +335,7 @@ def TemperaturaHoy(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_hoy['Fecha'], datos_hoy['Temperatura'], label='Temperatura', color='red', marker='o')
+    plt.plot(datos_hoy['Fecha'], datos_hoy['Temperatura'], label='Conexión de puntos', color='red', linestyle='-', marker='o')
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Temperatura')
     plt.title('Temperatura vs Tiempo (hoy)')
@@ -358,6 +367,7 @@ def TemperaturaHora(tabla):
     # Crea el gráfico de dispersión
     plt.figure(figsize=(10, 6))
     plt.scatter(datos_hoy['Fecha'], datos_hoy['Temperatura'], label='Temperatura', color='red', marker='o')
+    plt.plot(datos_hoy['Fecha'], datos_hoy['Temperatura'], label='Conexión de puntos', color='red', linestyle='-', marker='o')
     plt.xlabel('Fecha y Hora')
     plt.ylabel('Temperatura')
     plt.title('Temperatura vs Tiempo (última hora)')
@@ -414,7 +424,6 @@ def Hora(tabla):
     HumedadHora(tabla)
     TemperaturaHora(tabla)
     print("Actualización del gráfico de parametros de la útima hora\n")
-
 
 def Todo(tabla):
     Ayer(tabla)

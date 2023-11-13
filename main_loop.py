@@ -46,6 +46,31 @@ def Loop():
         tiempo = []
         print("Listas creadas\n")
 
+    listas= [tiempo,
+    PL_list,
+    UV_list,
+        TE_list,
+        HU_list]
+        
+    large = []
+    for lista in listas:
+            large.append(len(lista))
+    new_large= min(large)
+    for lista in listas:
+        lista= lista[:new_large]
+
+    print(new_large)
+
+    tiempo=tiempo[0:new_large]
+    PL_list=PL_list[0:new_large]
+    UV_list=UV_list[0:new_large]
+    TE_list=TE_list[0:new_large]
+    HU_list=HU_list[0:new_large]
+
+
+
+    
+
     datos = {
         'Fecha': tiempo,
         'Pluviosidad': PL_list,
