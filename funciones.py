@@ -8,7 +8,7 @@ from git import Repo
 import serial
 import pickle
 import random 
-
+import numpy as np
 
 def RadiacionAyer(tabla):
     #Se hace un gráfico con los datos de ayer, partiendo del dataset
@@ -445,9 +445,9 @@ def ActualizarGit(repo_path, file_paths, commit_message):
 
 def leer_variables(PL_list, UV_list,TE_list, HU_list,tiempo):
     PL = 15  # Valor por defecto
-    UV = 7 # Valor por defecto
-    TE = 30  # Valor por defecto
-    HU = 48 # Valor por defecto
+    UV = 0 # Valor por defecto
+    TE = 0  # Valor por defecto
+    HU = 43 # Valor por defecto
     tiempo_actual= datetime.now()
     try:
         ser = serial.Serial('COM3', 9600)  # Ajusta 'COM3' al puerto correcto
@@ -467,11 +467,16 @@ def leer_variables(PL_list, UV_list,TE_list, HU_list,tiempo):
                 HU = float(valor)
 
     except (FileNotFoundError, serial.SerialException, Exception) as e:
-        PL = PL + random.uniform(-1.5, 1.5)
-        UV = UV + random.uniform(-0.87, 0.87)
-        TE = TE + random.uniform(-1.5, 1.5)
-        HU = HU + random.uniform(-2.37, 2.37)
+        minutos= tiempo_actual.hour*60 + tiempo_actual.minute
+        PL = PL + random.uniform(-0.75, 0.75) 
+        TE = random.uniform(0.9, 1.1)*(13*np.sin((np.pi*minutos/1440))+19)
+        HU = PL + random.uniform(-0.75,0.75) 
 
+
+        if (minutos >360 ) and (minutos < 1110):
+            UV = random.uniform(0.9, 1.1)*14*np.sin((2*np.pi*minutos/1500)-0.46*np.pi)
+        else:
+            UV = 0
     finally:
         try:
             ser.close()
