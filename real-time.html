@@ -77,10 +77,10 @@
   <div class="container">
        
     <div class="image-container" onclick="expandImage(this)">
-      <img src="grafico_pluviosidad_hora.png" alt="Gráfico Pluviosidad Hora" onerror="this.src='cargando.png'">
+      <img id = PLhora src="grafico_pluviosidad_hora.png" alt="Gráfico Pluviosidad Hora" onerror="this.src='cargando.png'">
     </div>
     <div class="image-container" onclick="expandImage(this)">
-      <img src="grafico_pluviosidad_hoy.png" alt="Gráfico Pluviosidad Hoy" onerror="this.src='cargando.png'">
+      <img id = UVhora src="grafico_pluviosidad_hoy.png" alt="Gráfico Pluviosidad Hoy" onerror="this.src='cargando.png'">
     </div>
     <div class="image-container" onclick="expandImage(this)">
       <img src="grafico_pluviosidad_ayer.png" alt="Gráfico Pluviosidad Ayer" onerror="this.src='cargando.png'">
@@ -109,8 +109,8 @@
   
       // Llama a la función para actualizar las imágenes cada 30 segundos
       setInterval(function () {
-        actualizarImagen('grafico_pluviosidad_hora.png');
-        actualizarImagen('grafico_radiacion_hora.png');
+        actualizarImagen('PLhora');
+        actualizarImagen('UVhora');
       }, 3000);
 
     </script>
