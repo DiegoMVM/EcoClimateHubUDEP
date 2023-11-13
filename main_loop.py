@@ -33,12 +33,16 @@ def Loop():
             saved_data = pickle.load(f)
         PL_list = saved_data.get('PL_list', [])
         UV_list = saved_data.get('UV_list', [])
+        TE_list = saved_data.get('TE_list', [])
+        HU_list= saved_data.get('UV_list', [])
         tiempo = saved_data.get('tiempo', [])
         print("Obteniendo data almacenada anteriormente\n")
 
     except FileNotFoundError:
         PL_list = []
         UV_list = []
+        TE_list=  []
+        HU_list=  []
         tiempo = []
         print("Listas creadas\n")
 
@@ -46,6 +50,8 @@ def Loop():
         'Fecha': tiempo,
         'Pluviosidad': PL_list,
         'Radiación UV': UV_list,
+        "Temperatura": TE_list,
+        "Humedad": HU_list
     }
 
     #Se crea o inicializa la base de datos.
@@ -58,7 +64,12 @@ def Loop():
     funciones.Todo(tabla)
     print("Obteniendo gráficos\n")
 
-    nuevos_archivos= ['grafico_pluviosidad_ayer.png','grafico_pluviosidad_hoy.png','grafico_pluviosidad_hora.png','grafico_radiacion_hora.png','grafico_radiacion_hoy.png','grafico_radiacion_ayer.png','tabla_excel.xlsx','tabla_mapa_calor_seagreen.xlsx', "data.pkl"]
+    nuevos_archivos= ['grafico_pluviosidad_ayer.png','grafico_pluviosidad_hoy.png','grafico_pluviosidad_hora.png',
+                      'grafico_radiacion_hora.png','grafico_radiacion_hoy.png','grafico_radiacion_ayer.png', 
+                      'grafico_temperatura_hora.png','grafico_temperatura_hoy.png','grafico_temperatura_ayer.png',
+                      'grafico_humedad_hora.png','grafico_humedad_hoy.png','grafico_humedad_ayer.png',
+                      'tabla_excel.xlsx','tabla_mapa_calor_seagreen.xlsx', "data.pkl"]
+    
     funciones.ActualizarGit(os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
     print("Subiendo gráficos al repositorio de GitHub\n")
 
