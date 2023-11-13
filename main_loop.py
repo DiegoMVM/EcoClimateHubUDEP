@@ -64,7 +64,7 @@ def Loop():
     # Programar la tarea cada X minutos
     x= 1
     for minuto in range(0, 60, x):
-        schedule.every().hour.at(f":{minuto:02}").at.do(funciones.leer_variables,PL_list, UV_list,tiempo)
+        schedule.every().hour.at(f":{minuto:02}").do(funciones.leer_variables,PL_list, UV_list,tiempo)
         schedule.every().hour.at(f":{minuto:02}").do(funciones.DataBase,datos)
         schedule.every().hour.at(f":{minuto:02}").do(funciones.Hora,tabla)
         schedule.every().hour.at(f":{minuto:02}").do(funciones.ActualizarGit,os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
