@@ -86,7 +86,7 @@ def RadiacionHora(tabla):
 
 
 
-    datos_hoy = datos_hoy[datos_hoy['Fecha'].dt.minute % 5 == 0]
+    datos_hoy = datos_hoy[datos_hoy['Fecha'].dt.minute % 1 == 0]
 
 
     # Crea el gráfico de dispersión
@@ -178,7 +178,7 @@ def PluviosidadHora(tabla):
     fecha_hora_actual = fecha_actual - timedelta(minutes=60) 
     datos_hoy = df[df['Fecha'] >= fecha_hora_actual]
 
-    datos_hoy = datos_hoy[datos_hoy['Fecha'].dt.minute % 5 == 0]
+    datos_hoy = datos_hoy[datos_hoy['Fecha'].dt.minute % 1 == 0]
 
 
     # Crea el gráfico de dispersión
@@ -257,9 +257,10 @@ def ActualizarGit(repo_path, file_paths, commit_message):
 
 
 
-def leer_variables(PL_list, UV_list):
+def leer_variables(PL_list, UV_list,tiempo):
     PL = 0  # Valor por defecto
     UV = 0  # Valor por defecto
+    tiempo_actual= datetime.now()
     try:
         ser = serial.Serial('COM3', 9600)  # Ajusta 'COM3' al puerto correcto
 
@@ -286,4 +287,5 @@ def leer_variables(PL_list, UV_list):
 
     PL_list.append(PL)
     UV_list.append(UV)
-    return PL_list, UV_list    
+    tiempo.append(tiempo_actual)
+    return PL_list, UV_list, tiempo   

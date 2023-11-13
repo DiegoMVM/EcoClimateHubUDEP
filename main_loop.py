@@ -63,10 +63,10 @@ def Loop():
 
     # Programar la tarea cada 5 minutos
 
-    schedule.every(5).minutes.do(funciones.leer_variables,PL_list, UV_list)
-    schedule.every(5).minutes.do(funciones.DataBase,datos)
-    schedule.every(5).minutes.do(funciones.Hora,tabla)
-    schedule.every(5).minutes.do(funciones.ActualizarGit,os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
+    schedule.every(1).minutes.do(funciones.leer_variables,PL_list, UV_list,tiempo)
+    schedule.every(1).minutes.do(funciones.DataBase,datos)
+    schedule.every(1).minutes.do(funciones.Hora,tabla)
+    schedule.every(1).minutes.do(funciones.ActualizarGit,os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
     # Programar la tarea cada media hora
     schedule.every(30).minutes.do(funciones.Hoy,tabla)
 
