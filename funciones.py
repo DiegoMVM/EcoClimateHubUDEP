@@ -42,6 +42,7 @@ def RadiacionAyer(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig('grafico_radiacion_ayer.png')
+    plt.close()
     
 def RadiacionHoy(tabla):
 
@@ -72,6 +73,7 @@ def RadiacionHoy(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig('grafico_radiacion_hoy.png')
+    plt.close()
     
 
 def RadiacionHora(tabla): 
@@ -107,6 +109,7 @@ def RadiacionHora(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig('grafico_radiacion_hora.png')
+    plt.close()
     
 def PluviosidadAyer(tabla):
 #Se hace un gráfico con los datos de ayer, partiendo del dataset
@@ -130,13 +133,12 @@ def PluviosidadAyer(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
 
-
-
     # Formatea el eje x para mostrar solo cada hora
     plt.xticks(datos_ayer['Fecha'][::3], [hora.strftime('%I:%M %p') for hora in datos_ayer['Fecha']][::3])
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig('grafico_pluviosidad_ayer.png')
+    plt.close()
     
 
 def PluviosidadHoy(tabla): 
@@ -168,6 +170,7 @@ def PluviosidadHoy(tabla):
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig("grafico_pluviosidad_hoy.png")
+    plt.close()
     
 def PluviosidadHora(tabla): 
 
@@ -191,6 +194,7 @@ def PluviosidadHora(tabla):
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
+    plt.close()
 
 
 
