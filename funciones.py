@@ -194,15 +194,13 @@ def PluviosidadHora(tabla):
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
-    plt.close()
-
-
 
     # Formatea el eje x para mostrar solo cada hora
     plt.xticks(datos_hoy['Fecha'][::6], [hora.strftime('%I:%M %p') for hora in datos_hoy['Fecha']][::6])
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
     plt.tight_layout()
     plt.savefig("grafico_pluviosidad_hora.png")
+    plt.close()
     
 ###########
 
