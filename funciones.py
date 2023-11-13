@@ -4,12 +4,9 @@ import pandas as pd
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import pandas as pd
-import requests
-import base64 
-import os
 from git import Repo
 import serial
-
+import pickle
 
 
 
@@ -225,14 +222,17 @@ def DataBase(datos):
 def Ayer(tabla):
     RadiacionAyer(tabla)
     PluviosidadAyer(tabla)
+    print("Actualización del gráfico de parametros del día anterior\n")
 
 def Hoy(tabla):
     PluviosidadHoy(tabla)
     RadiacionHoy(tabla)
+    print("Actualización del gráfico de parametros del día de hoy\n")
 
 def Hora(tabla):
     PluviosidadHora(tabla)
     RadiacionHora(tabla)
+    print("Actualización del gráfico de parametros de la útima hora\n")
 
 
 def Todo(tabla):
@@ -289,8 +289,12 @@ def leer_variables(PL_list, UV_list,tiempo):
         except NameError:
             pass  # El objeto ser puede no estar definido si ocurrió una excepción al abrir el puerto
 
-
     PL_list.append(PL)
     UV_list.append(UV)
     tiempo.append(tiempo_actual)
+    data_to_save = {'PL_list': PL_list, 'UV_list': UV_list, 'tiempo': tiempo}
+
+    with open('data.pkl', 'wb') as f:
+        pickle.dump(data_to_save, f)
+    print("Leyendo variables del sensor arduino\n")    
     return PL_list, UV_list, tiempo   
