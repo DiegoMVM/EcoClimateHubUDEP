@@ -480,8 +480,10 @@ def leer_variables(PL_list, UV_list,TE_list, HU_list,tiempo):
 
     PL_list.append(PL)
     UV_list.append(UV)
+    TE_list.append(TE)
+    HU_list.append(HU)
     tiempo.append(tiempo_actual)
-    data_to_save = {'PL_list': PL_list, 'UV_list': UV_list, 'tiempo': tiempo}
+    data_to_save = {'PL_list': PL_list, 'UV_list': UV_list,'TE_list': TE_list,'HU_list': HU_list,  'tiempo': tiempo}
 
     with open('data.pkl', 'wb') as f:
         pickle.dump(data_to_save, f)

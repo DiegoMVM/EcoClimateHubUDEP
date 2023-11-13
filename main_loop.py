@@ -64,11 +64,7 @@ def Loop():
     funciones.Todo(tabla)
     print("Obteniendo gráficos\n")
 
-    nuevos_archivos= ['grafico_pluviosidad_ayer.png','grafico_pluviosidad_hoy.png','grafico_pluviosidad_hora.png',
-                      'grafico_radiacion_hora.png','grafico_radiacion_hoy.png','grafico_radiacion_ayer.png', 
-                      'grafico_temperatura_hora.png','grafico_temperatura_hoy.png','grafico_temperatura_ayer.png',
-                      'grafico_humedad_hora.png','grafico_humedad_hoy.png','grafico_humedad_ayer.png',
-                      'tabla_excel.xlsx','tabla_mapa_calor_seagreen.xlsx', "data.pkl"]
+    nuevos_archivos= ['grafico_pluviosidad_ayer.png','grafico_pluviosidad_hoy.png','grafico_pluviosidad_hora.png','grafico_radiacion_hora.png','grafico_radiacion_hoy.png','grafico_radiacion_ayer.png', 'grafico_temperatura_hora.png','grafico_temperatura_hoy.png','grafico_temperatura_ayer.png','grafico_humedad_hora.png','grafico_humedad_hoy.png','grafico_humedad_ayer.png','tabla_excel.xlsx','tabla_mapa_calor_seagreen.xlsx', "data.pkl"]
     
     funciones.ActualizarGit(os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
     print("Subiendo gráficos al repositorio de GitHub\n")
@@ -79,8 +75,8 @@ def Loop():
 
     # Programar la a tarea cada X minutos
     x= 1
-    for minuto in range(0, 60, x):
-        schedule.every().hour.at(f":{minuto:02}").do(funciones.leer_variables,PL_list, UV_list,tiempo)
+    for minuto in range(0, 60, x):      
+        schedule.every().hour.at(f":{minuto:02}").do(funciones.leer_variables,PL_list, UV_list,TE_list, HU_list,tiempo)
         schedule.every().hour.at(f":{minuto:02}").do(funciones.DataBase,datos)
         schedule.every().hour.at(f":{minuto:02}").do(funciones.Hora,tabla)
         schedule.every().hour.at(f":{minuto:02}").do(funciones.ActualizarGit,os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
