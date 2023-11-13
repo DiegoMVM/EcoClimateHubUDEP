@@ -242,18 +242,21 @@ def Todo(tabla):
 
 
 def ActualizarGit(repo_path, file_paths, commit_message):
+    try:
     # Abrir el repositorio
-    repo = Repo(repo_path)
+        repo = Repo(repo_path)
 
-    # Añadir los archivos al índice
-    repo.index.add(file_paths)
+        # Añadir los archivos al índice
+        repo.index.add(file_paths)
 
-    # Realizar el commit
-    repo.index.commit(commit_message)
+        # Realizar el commit
+        repo.index.commit(commit_message)
 
-    # Hacer push a la rama actual
-    origin = repo.remote(name='origin')
-    origin.push()
+        # Hacer push a la rama actual
+        origin = repo.remote(name='origin')
+        origin.push()
+    except :
+        pass
 
 
 

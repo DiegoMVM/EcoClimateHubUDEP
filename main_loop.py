@@ -61,15 +61,18 @@ def Loop():
     # Programar las actualizaciones automaticas
     schedule.every().day.at("00:00:03").do(funciones.Todo,tabla)
 
-    # Programar la tarea cada 5 minutos
+    # Programar la tarea cada X minutos
+    x= 1
+    for minuto in range(0, 60, x):
+        schedule.every().hour.at(f":{minuto:02}").at.do(funciones.leer_variables,PL_list, UV_list,tiempo)
+        schedule.every().hour.at(f":{minuto:02}").do(funciones.DataBase,datos)
+        schedule.every().hour.at(f":{minuto:02}").do(funciones.Hora,tabla)
+        schedule.every().hour.at(f":{minuto:02}").do(funciones.ActualizarGit,os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
+    
 
-    schedule.every(1).minutes.do(funciones.leer_variables,PL_list, UV_list,tiempo)
-    schedule.every(1).minutes.do(funciones.DataBase,datos)
-    schedule.every(1).minutes.do(funciones.Hora,tabla)
-    schedule.every(1).minutes.do(funciones.ActualizarGit,os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
     # Programar la tarea cada media hora
-    schedule.every(30).minutes.do(funciones.Hoy,tabla)
-
+    schedule.every().hour.at(":00").do(funciones.Hoy,tabla)
+    schedule.every().hour.at(":30").do(funciones.Hoy,tabla)
     while True:
         schedule.run_pending()
         time.sleep(1)
