@@ -479,11 +479,11 @@ def leer_variables(PL_list, UV_list,TE_list, HU_list,tiempo):
         minutos= tiempo_actual.hour*60 + tiempo_actual.minute
         PL = PL + random.uniform(-0.75, 0.75) 
         TE = random.uniform(0.995, 1.005)*(13*np.sin((np.pi*minutos/1440))+19)
-        HU = random.uniform(0.995, 1.005)*(29*np.sin((np.pi*minutos/1440))+37) 
+        HU = random.uniform(0.995, 1.005)*(29*np.sin((np.pi*minutos/1440))+17) 
 
 
         if (minutos >360 ) and (minutos < 1110):
-            UV = random.uniform(0.995, 1.005)*14*np.sin((2*np.pi*minutos/1500)-0.46*np.pi)
+            UV = random.uniform(0.95, 1.05)*14*np.sin((2*np.pi*minutos/1500)-0.46*np.pi)
         else:
             UV = 0
     finally:
