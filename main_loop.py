@@ -21,21 +21,21 @@ def Loop():
         x=tiempo
     except NameError:
         tiempo= Crear.CrearTiempo(fecha_inicio)
-        tiempo=[]
+        
         print("se creo la lista tiempo")
 
     try:
         x=(PL_list)
     except NameError:
         PL_list= Crear.CrearParametro(tiempo,0,30)
-        PL_list= []
+        
         print("se creo la lista Pluviosidad")
 
     try:
         x=(UV_list)
     except NameError:
         UV_list= Crear.CrearParametro(tiempo,0,14)
-        UV_list=[]
+        
         print("se creo la lista Radiacion ")
 
 
