@@ -80,19 +80,19 @@
       <img id = PLhora src="grafico_pluviosidad_hora.png" alt="Gráfico Pluviosidad Hora" onerror="this.src='cargando.png'">
     </div>
     <div class="image-container" onclick="expandImage(this)">
-      <img id = UVhora src="grafico_pluviosidad_hoy.png" alt="Gráfico Pluviosidad Hoy" onerror="this.src='cargando.png'">
+      <img id = PLhoy src="grafico_pluviosidad_hoy.png" alt="Gráfico Pluviosidad Hoy" onerror="this.src='cargando.png'">
     </div>
     <div class="image-container" onclick="expandImage(this)">
-      <img src="grafico_pluviosidad_ayer.png" alt="Gráfico Pluviosidad Ayer" onerror="this.src='cargando.png'">
+      <img id = PLayer src="grafico_pluviosidad_ayer.png" alt="Gráfico Pluviosidad Ayer" onerror="this.src='cargando.png'">
     </div>
     <div class="image-container" onclick="expandImage(this)">
-      <img src="grafico_radiacion_hora.png" alt="Gráfico Radiación Hora" onerror="this.src='cargando.png'">
+      <img id = UVhora src="grafico_radiacion_hora.png" alt="Gráfico Radiación Hora" onerror="this.src='cargando.png'">
     </div>
     <div class="image-container" onclick="expandImage(this)">
-      <img src="grafico_radiacion_hoy.png" alt="Gráfico Radiación Hoy" onerror="this.src='cargando.png'">
+      <img id = UVhoy src="grafico_radiacion_hoy.png" alt="Gráfico Radiación Hoy" onerror="this.src='cargando.png'">
     </div>
     <div class="image-container" onclick="expandImage(this)">
-      <img src="grafico_radiacion_ayer.png" alt="Gráfico Radiación Ayer" onerror="this.src='cargando.png'">
+      <img id= UVayer src="grafico_radiacion_ayer.png" alt="Gráfico Radiación Ayer" onerror="this.src='cargando.png'">
     </div>
 
   
@@ -111,7 +111,11 @@
       setInterval(function () {
         actualizarImagen('PLhora');
         actualizarImagen('UVhora');
-      }, 3000);
+        actualizarImagen('PLhoy');
+        actualizarImagen('UVhoy');
+        actualizarImagen('PLayer');
+        actualizarImagen('UVayer');       
+      }, 20000);
 
     </script>
 
