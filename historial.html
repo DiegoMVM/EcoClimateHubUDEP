@@ -3,8 +3,9 @@
 
 <head>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <style>
-    body {
+        body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
@@ -203,16 +204,10 @@
             // Formatear la fecha y hora con minutos en la primera columna
             if (col === 0) {
               var datetimeString = cell.w;
-              var dateParts = datetimeString.split(' ');
-              var dateValue = new Date(dateParts[0] + 'T' + dateParts[1] + 'Z');
-              if (!isNaN(dateValue.getTime())) {
-                // Formatear fecha y hora con minutos
-                var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-                var formattedDate = new Intl.DateTimeFormat('es-ES', options).format(dateValue);
-                td.innerHTML = formattedDate;
-              } else {
-                td.innerHTML = cell.w;
-              }
+              var momentDate = moment(datetimeString).utcOffset(-5); // Ajustar la zona horaria a Nueva York (UTC-5)
+              var formattedDate = new Intl.DateTimeFormat('es-ES', options).format(dateValue);
+              td.innerHTML = formattedDate.replace('T', ' '); // Reemplazar 'T' con espacio
+
             } else {
               // Mostrar el valor tal como está para las otras columnas
               td.innerHTML = cell.w;
@@ -233,3 +228,4 @@
 </body>
 
 </html>
+
