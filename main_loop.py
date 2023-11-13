@@ -58,7 +58,7 @@ def Loop():
     funciones.Todo(tabla)
     print("Obteniendo gráficos\n")
 
-    nuevos_archivos= ['grafico_pluviosidad_ayer.png','grafico_pluviosidad_hoy.png','grafico_pluviosidad_hora.png','grafico_radiacion_hora.png','grafico_radiacion_hoy.png','grafico_radiacion_ayer.png','tabla_excel.xlsx','tabla_mapa_calor_seagreen.xlsx']
+    nuevos_archivos= ['grafico_pluviosidad_ayer.png','grafico_pluviosidad_hoy.png','grafico_pluviosidad_hora.png','grafico_radiacion_hora.png','grafico_radiacion_hoy.png','grafico_radiacion_ayer.png','tabla_excel.xlsx','tabla_mapa_calor_seagreen.xlsx', "data.pkl"]
     funciones.ActualizarGit(os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
     print("Subiendo gráficos al repositorio de GitHub\n")
 
