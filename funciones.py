@@ -280,8 +280,8 @@ def leer_variables(PL_list, UV_list,tiempo):
                 UV = float(valor)
 
     except (FileNotFoundError, serial.SerialException, Exception) as e:
-        PL = 15
-        UV = 7
+        PL = 0
+        UV = 0
 
     finally:
         try:
