@@ -30,6 +30,7 @@ def RadiacionAyer(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_ayer['Fecha'].min(), datos_ayer['Fecha'].max())
     plt.tight_layout()
 
 
@@ -60,6 +61,7 @@ def RadiacionHoy(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_hoy['Fecha'].min(), datos_hoy['Fecha'].max())
     plt.tight_layout()
 
 
@@ -94,6 +96,7 @@ def RadiacionHora(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_hoy['Fecha'].min(), datos_hoy['Fecha'].max())
     plt.tight_layout()
 
 
@@ -125,6 +128,7 @@ def PluviosidadAyer(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_ayer['Fecha'].min(), datos_ayer['Fecha'].max())
     plt.tight_layout()
 
     # Formatea el eje x para mostrar solo cada hora
@@ -153,6 +157,7 @@ def PluviosidadHoy(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_hoy['Fecha'].min(), datos_hoy['Fecha'].max())
     plt.tight_layout()
 
 
@@ -184,6 +189,7 @@ def PluviosidadHora(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_hoy['Fecha'].min(), datos_hoy['Fecha'].max())
     plt.tight_layout()
 
     # Formatea el eje x para mostrar solo cada hora
@@ -216,6 +222,7 @@ def HumedadAyer(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_ayer['Fecha'].min(), datos_ayer['Fecha'].max())
     plt.tight_layout()
 
     # Formatea el eje x para mostrar solo cada hora
@@ -244,6 +251,7 @@ def HumedadHoy(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_hoy['Fecha'].min(), datos_hoy['Fecha'].max())
     plt.tight_layout()
 
 
@@ -275,6 +283,7 @@ def HumedadHora(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_hoy['Fecha'].min(), datos_hoy['Fecha'].max())
     plt.tight_layout()
 
     # Formatea el eje x para mostrar solo cada hora
@@ -305,6 +314,7 @@ def TemperaturaAyer(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_ayer['Fecha'].min(), datos_ayer['Fecha'].max())
     plt.tight_layout()
 
     # Formatea el eje x para mostrar solo cada hora
@@ -333,6 +343,7 @@ def TemperaturaHoy(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_hoy['Fecha'].min(), datos_hoy['Fecha'].max())
     plt.tight_layout()
 
 
@@ -364,6 +375,7 @@ def TemperaturaHora(tabla):
     plt.legend()
     plt.grid(True)
     plt.xticks(rotation=45, ha='right')  # Rotar las etiquetas del eje x para mejor legibilidad
+    plt.xlim(datos_hoy['Fecha'].min(), datos_hoy['Fecha'].max())
     plt.tight_layout()
 
     # Formatea el eje x para mostrar solo cada hora
