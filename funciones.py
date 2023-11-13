@@ -8,7 +8,7 @@ import requests
 import base64 
 import os
 from git import Repo
-
+import serial
 
 
 
@@ -254,3 +254,36 @@ def ActualizarGit(repo_path, file_paths, commit_message):
     # Hacer push a la rama actual
     origin = repo.remote(name='origin')
     origin.push()
+
+
+
+def leer_variables(PL_list, UV_list):
+    PL = 0  # Valor por defecto
+    UV = 0  # Valor por defecto
+    try:
+        ser = serial.Serial('COM3', 9600)  # Ajusta 'COM3' al puerto correcto
+
+        linea = ser.readline().decode('utf-8').strip()
+        partes = linea.split(',')
+
+        for parte in partes:
+            variable, valor = parte.split(':')
+            if variable == 'PL':
+                PL = float(valor)
+            elif variable == 'UV':
+                UV = float(valor)
+
+    except (FileNotFoundError, serial.SerialException, Exception) as e:
+        PL = 15
+        UV = 7
+
+    finally:
+        try:
+            ser.close()
+        except NameError:
+            pass  # El objeto ser puede no estar definido si ocurrió una excepción al abrir el puerto
+
+
+    PL_list.append(PL)
+    UV_list.append(UV)
+    return PL_list, UV_list    

@@ -10,6 +10,7 @@ import schedule
 import pytz 
 import os
 from git import Repo
+import serial
 
 tz = pytz.timezone('America/New_York')
 def Loop(): 
@@ -20,18 +21,21 @@ def Loop():
         x=tiempo
     except NameError:
         tiempo= Crear.CrearTiempo(fecha_inicio)
+        tiempo=[]
         print("se creo la lista tiempo")
 
     try:
         x=(PL_list)
     except NameError:
         PL_list= Crear.CrearParametro(tiempo,0,30)
+        PL_list= []
         print("se creo la lista Pluviosidad")
 
     try:
         x=(UV_list)
     except NameError:
         UV_list= Crear.CrearParametro(tiempo,0,14)
+        UV_list=[]
         print("se creo la lista Radiacion ")
 
 
@@ -58,8 +62,10 @@ def Loop():
     schedule.every().day.at("00:00:03").do(funciones.Todo,tabla)
 
     # Programar la tarea cada 5 minutos
-    schedule.every(5).minutes.do(funciones.Hora,tabla)
+
+    schedule.every(5).minutes.do(funciones.leer_variables,PL_list, UV_list)
     schedule.every(5).minutes.do(funciones.DataBase,datos)
+    schedule.every(5).minutes.do(funciones.Hora,tabla)
     schedule.every(5).minutes.do(funciones.ActualizarGit,os.getcwd(), nuevos_archivos, "Se actualizaron archivos")
     # Programar la tarea cada media hora
     schedule.every(30).minutes.do(funciones.Hoy,tabla)
