@@ -469,12 +469,12 @@ def leer_variables(PL_list, UV_list,TE_list, HU_list,tiempo):
     except (FileNotFoundError, serial.SerialException, Exception) as e:
         minutos= tiempo_actual.hour*60 + tiempo_actual.minute
         PL = PL + random.uniform(-0.75, 0.75) 
-        TE = random.uniform(0.9, 1.1)*(13*np.sin((np.pi*minutos/1440))+19)
-        HU = PL + random.uniform(-0.75,0.75) 
+        TE = random.uniform(0.9995, 1.0005)*(13*np.sin((np.pi*minutos/1440))+19)
+        HU = random.uniform(0.9995, 1.0005)*(29*np.sin((np.pi*minutos/1440))+37) 
 
 
         if (minutos >360 ) and (minutos < 1110):
-            UV = random.uniform(0.9, 1.1)*14*np.sin((2*np.pi*minutos/1500)-0.46*np.pi)
+            UV = random.uniform(0.9995, 1.0005)*14*np.sin((2*np.pi*minutos/1500)-0.46*np.pi)
         else:
             UV = 0
     finally:
