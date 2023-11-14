@@ -393,13 +393,28 @@ def DataBase(datos):
     # Guardar el DataFrame en un archivo Excel
     nombre_archivo = 'tabla_excel.xlsx'
     df.to_excel(nombre_archivo, index=False)
-    archivos = ['tabla_mapa_calor_seagreen.xlsx']
-    mapas_colores = {'seagreen': sns.light_palette("seagreen", as_cmap=True)}
 
     # Aplicar formato condicional tipo mapa de calor y guardar en archivos Excel
-    for nombre_archivo, mapa_color in zip(archivos, mapas_colores.values()):
-        df_estilizado = df.style.background_gradient(cmap=mapa_color, subset=['Pluviosidad', 'Radiación UV'])
-        df_estilizado.to_excel(nombre_archivo, index=False, engine='openpyxl')
+
+
+    df_estilizado = (
+    df.style
+    .background_gradient(cmap=sns.light_palette("seagreen", as_cmap=True), subset=['Pluviosidad'])
+    .background_gradient(cmap=plt.cm.get_cmap('plasma'), subset=['Radiación UV'])
+    .background_gradient(cmap=plt.cm.get_cmap('RdBu_r'), subset=['Temperatura'], vmin=df['Temperatura'].min(), vmax=df['Temperatura'].max())
+    .background_gradient(cmap=plt.cm.get_cmap('inferno'), subset=['Humedad'], vmin=df['Humedad'].min(), vmax=df['Humedad'].max())
+)
+
+
+    
+    df_estilizado.to_excel('tabla_mapa_calor_seagreen.xlsx', index=False, engine='openpyxl')
+
+
+
+
+
+
+
 
 
 ###############
